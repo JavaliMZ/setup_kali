@@ -2,6 +2,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install -y i3 alacritty picom flameshot rofi
 
 echo "Configuring .config/i3/config file"
+mkdir -p $HOME/.config/i3
 echo '' > $HOME/.config/i3/config
 echo 'exec_always picom -f --config $HOME/.config/picom/picom.conf' >> $HOME/.config/i3/config
 echo 'exec_always python $HOME/.config/i3/alternating_layouts.py' >> $HOME/.config/i3/config
@@ -81,37 +82,39 @@ echo '' >> $HOME/.config/i3/config
 
 
 echo "Configuring .config/alacritty/alacritty.toml file"
-echo 'colors.draw_bold_text_with_bright_colors = true' >> $HOME/.config.alacritty/alacritty.toml
-echo '' >> $HOME/.config.alacritty/alacritty.toml
-echo '' >> $HOME/.config.alacritty/alacritty.toml
-echo '[cursor.style]' >> $HOME/.config.alacritty/alacritty.toml
-echo '# blink_interval = 500' >> $HOME/.config.alacritty/alacritty.toml
-echo 'blinking = "Always"' >> $HOME/.config.alacritty/alacritty.toml
-echo 'shape = "Beam"' >> $HOME/.config.alacritty/alacritty.toml
-echo '' >> $HOME/.config.alacritty/alacritty.toml
-echo '[font]' >> $HOME/.config.alacritty/alacritty.toml
-echo 'size = 13.0' >> $HOME/.config.alacritty/alacritty.toml
-echo '' >> $HOME/.config.alacritty/alacritty.toml
-echo '[scrolling]' >> $HOME/.config.alacritty/alacritty.toml
-echo 'history = 100000' >> $HOME/.config.alacritty/alacritty.toml
-echo 'multiplier = 6' >> $HOME/.config.alacritty/alacritty.toml
-echo '' >> $HOME/.config.alacritty/alacritty.toml
-echo '[window]' >> $HOME/.config.alacritty/alacritty.toml
-echo 'decorations = "none"' >> $HOME/.config.alacritty/alacritty.toml
-echo 'decorations_theme_variant = "Dark"' >> $HOME/.config.alacritty/alacritty.toml
-echo 'opacity = 0.96' >> $HOME/.config.alacritty/alacritty.toml
-echo 'blur = true' >> $HOME/.config.alacritty/alacritty.toml
-echo '' >> $HOME/.config.alacritty/alacritty.toml
-echo '' >> $HOME/.config.alacritty/alacritty.toml
-echo '[window.class]' >> $HOME/.config.alacritty/alacritty.toml
-echo 'general = "Alacritty"' >> $HOME/.config.alacritty/alacritty.toml
-echo 'instance = "Alacritty"' >> $HOME/.config.alacritty/alacritty.toml
-echo '' >> $HOME/.config.alacritty/alacritty.toml
-echo '[window.padding]' >> $HOME/.config.alacritty/alacritty.toml
-echo 'x = 15' >> $HOME/.config.alacritty/alacritty.toml
-echo 'y = 15' >> $HOME/.config.alacritty/alacritty.toml
-echo '[selection]' >> $HOME/.config.alacritty/alacritty.toml
-echo 'save_to_clipboard = true' >> $HOME/.config.alacritty/alacritty.toml
-echo '' >> $HOME/.config.alacritty/alacritty.toml
-echo '[general]' >> $HOME/.config.alacritty/alacritty.toml
-echo 'live_config_reload = true' >> $HOME/.config.alacritty/alacritty.toml
+mkdir -p $HOME/.config/alacritty
+echo '' > $HOME/.config/alacritty/alacritty.toml
+echo 'colors.draw_bold_text_with_bright_colors = true' >> $HOME/.config/alacritty/alacritty.toml
+echo '' >> $HOME/.config/alacritty/alacritty.toml
+echo '' >> $HOME/.config/alacritty/alacritty.toml
+echo '[cursor.style]' >> $HOME/.config/alacritty/alacritty.toml
+echo '# blink_interval = 500' >> $HOME/.config/alacritty/alacritty.toml
+echo 'blinking = "Always"' >> $HOME/.config/alacritty/alacritty.toml
+echo 'shape = "Beam"' >> $HOME/.config/alacritty/alacritty.toml
+echo '' >> $HOME/.config/alacritty/alacritty.toml
+echo '[font]' >> $HOME/.config/alacritty/alacritty.toml
+echo 'size = 13.0' >> $HOME/.config/alacritty/alacritty.toml
+echo '' >> $HOME/.config/alacritty/alacritty.toml
+echo '[scrolling]' >> $HOME/.config/alacritty/alacritty.toml
+echo 'history = 100000' >> $HOME/.config/alacritty/alacritty.toml
+echo 'multiplier = 6' >> $HOME/.config/alacritty/alacritty.toml
+echo '' >> $HOME/.config/alacritty/alacritty.toml
+echo '[window]' >> $HOME/.config/alacritty/alacritty.toml
+echo 'decorations = "none"' >> $HOME/.config/alacritty/alacritty.toml
+echo 'decorations_theme_variant = "Dark"' >> $HOME/.config/alacritty/alacritty.toml
+echo 'opacity = 0.96' >> $HOME/.config/alacritty/alacritty.toml
+echo 'blur = true' >> $HOME/.config/alacritty/alacritty.toml
+echo '' >> $HOME/.config/alacritty/alacritty.toml
+echo '' >> $HOME/.config/alacritty/alacritty.toml
+echo '[window.class]' >> $HOME/.config/alacritty/alacritty.toml
+echo 'general = "Alacritty"' >> $HOME/.config/alacritty/alacritty.toml
+echo 'instance = "Alacritty"' >> $HOME/.config/alacritty/alacritty.toml
+echo '' >> $HOME/.config/alacritty/alacritty.toml
+echo '[window.padding]' >> $HOME/.config/alacritty/alacritty.toml
+echo 'x = 15' >> $HOME/.config/alacritty/alacritty.toml
+echo 'y = 15' >> $HOME/.config/alacritty/alacritty.toml
+echo '[selection]' >> $HOME/.config/alacritty/alacritty.toml
+echo 'save_to_clipboard = true' >> $HOME/.config/alacritty/alacritty.toml
+echo '' >> $HOME/.config/alacritty/alacritty.toml
+echo '[general]' >> $HOME/.config/alacritty/alacritty.toml
+echo 'live_config_reload = true' >> $HOME/.config/alacritty/alacritty.toml

@@ -1,12 +1,17 @@
+#!/bin/bash
+
 sudo apt update && sudo apt upgrade -y
+
 sudo apt install -y i3 alacritty picom flameshot rofi
+sudo apt purge -y zsh-syntax-highlighting
 
+main_url='https://raw.githubusercontent.com/JavaliMZ/setup_kali/main'
 
-main_url='https://raw.githubusercontent.com/JavaliMZ/setup_kali/refs/heads/main'
+mkdir -p $HOME/.config/i3
+wget -O $HOME/.config/i3/config $main_url/config
+wget -O $HOME/.config/i3/alternating_layouts.py $main_url/alternating_layouts.py
 
-mkdir $HOME/.config/i3 -p
-wget $main_url/config -o $HOME/.config/i3/
-wget $main_url/alternating_layouts.py -o $HOME/.config/i3/
+mkdir -p $HOME/.config/alacritty
+wget -O $HOME/.config/alacritty/alacritty.yml $main_url/alacritty.yml
 
-mkdir $HOME/.config/alacritty -p
-wget $main_url/alacritty.toml -o $HOME/.config/alacritty
+echo "Setup completed successfully!"

@@ -17,9 +17,4 @@ mkdir -p $HOME/.config/alacritty
 wget -O $HOME/.config/alacritty/alacritty.yml $main_url/alacritty.yml
 
 
-# Enable i3 to start on boot with XFCE4 DE, and disable XFCE4 Window Manager
-setxkbmap pt
-
-
-sudo apt install python3-i3ipc
 echo "Setup completed successfully!"

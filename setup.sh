@@ -2,7 +2,7 @@
 
 sudo apt update && sudo apt upgrade -y
 
-sudo apt install -y i3 alacritty picom flameshot rofi
+sudo apt install -y i3 alacritty picom flameshot rofi python3-i3ipc feh
 
 sudo apt purge -y zsh-syntax-highlighting
 

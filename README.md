@@ -9,5 +9,5 @@ Cli Prompt:
 
 ```bash
 export PS1='%F{%(#.blue.green)}[%B%F{white}$(date -u +"%d$(echo $(date -u +%b) | tr '[:lower:]' '[:upper:]')%Y - %HH%M UTC")%b%F{%(#.blue.green)}]▶%B%(#.%F{red}#.%F{blue}$)%b%F{reset}'
-echo "export PS1='%F{%(#.blue.green)}[%B%F{white}$(date -u +"%d$(echo $(date -u +%b) | tr '[:lower:]' '[:upper:]')%Y - %HH%M UTC")%b%F{%(#.blue.green)}]▶%B%(#.%F{red}#.%F{blue}$)%b%F{reset}'" >> .zshrc
+echo "export PS1='%F{%(#.blue.green)}[%B%F{white}$(date -u +\"%d$(echo $(date -u +%b) | tr '[:lower:]' '[:upper:]')%Y - %HH%M UTC\")%b%F{%(#.blue.green)}]▶%B%(#.%F{red}#.%F{blue}$)%b%F{reset}'" >> .zshrc
 ```

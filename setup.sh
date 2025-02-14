@@ -4,6 +4,10 @@ sudo apt update && sudo apt upgrade -y
 
 sudo apt install -y i3 alacritty picom flameshot rofi python3-i3ipc feh seclists golang fzf
 
+echo 'source <(fzf --zsh)' >> $HOME/.zshrc
+echo 'PATH=$PATH:$HOME/go/bin' >> $HOME/.zshrc
+
+
 go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
 go install github.com/heartbeatsjp/check-tls-cert@latest
 

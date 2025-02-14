@@ -44,3 +44,8 @@ style = "Regular"
 [window.padding]
 x = 15
 y = 15
+
+
+[cursor]
+style = "Beam"
+blink = true

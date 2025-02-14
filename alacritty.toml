@@ -47,5 +47,4 @@ y = 15
 
 
 [cursor]
-style = "Beam"
-blink = true
+style = { shape = "Beam", blinking = "Always" }

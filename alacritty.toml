@@ -23,7 +23,7 @@ background = "0x23252e"
 foreground = "0xFFFFFF"
 
 [font]
-size = 10
+size = 12
 
 [font.bold]
 family = "Fira Code"
@@ -42,5 +42,5 @@ family = "Fira Code"
 style = "Regular"
 
 [window.padding]
-x = 5
-y = 5
+x = 15
+y = 15

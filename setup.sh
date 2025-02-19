@@ -67,7 +67,7 @@ wget -O $HOME/.config/alacritty/alacritty.toml $MAIN_URL/alacritty.toml
 # Add necessary lines to .zshrc
 add_to_zshrc_if_not_exists "$PREEXEC_CODE" "preexec function" "preexec()"
 add_to_zshrc_if_not_exists 'source <(fzf --zsh)' "fzf" "fzf --zsh"
-add_to_zshrc_if_not_exists 'PATH=$PATH:$HOME/go/bin' "go bin" "go/bin"
+add_to_zshrc_if_not_exists 'PATH=$PATH:$HOME/go/bin:$HOME/.pdtm/go/bin' "go bin" "go/bin"
 
 
 echo "Setup completed successfully!"

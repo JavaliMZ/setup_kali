@@ -34,6 +34,7 @@ sudo apt update && sudo apt upgrade -y
 
 # Install necessary packages
 packages=(
+    pipx
     i3
     alacritty
     picom

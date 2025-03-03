@@ -33,21 +33,30 @@ add_to_zshrc_if_not_exists() {
 sudo apt update && sudo apt upgrade -y
 
 # Install necessary packages
-sudo apt install -y i3
-sudo apt install -y alacritty 
-sudo apt install -y picom 
-sudo apt install -y flameshot 
-sudo apt install -y rofi 
-sudo apt install -y python3-i3ipc 
-sudo apt install -y feh 
-sudo apt install -y seclists 
-sudo apt install -y golang 
-sudo apt install -y fzf
+packages=(
+    i3
+    alacritty
+    picom
+    flameshot
+    rofi
+    python3-i3ipc
+    feh
+    seclists
+    golang
+    fzf
+    docker.io
+    moreutils
+    jq
+    xclip
+)
+
+sudo apt install -y "${packages[@]}"
 
 sudo apt purge -y zsh-syntax-highlighting
 
 go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
 go install -v github.com/heartbeatsjp/check-tls-cert@latest
+go install -v github.com/s0md3v/smap/cmd/smap@latest
 
 $HOME/go/bin/pdtm -ia
 
@@ -68,6 +77,7 @@ wget -O $HOME/.config/alacritty/alacritty.toml $MAIN_URL/alacritty.toml
 add_to_zshrc_if_not_exists "$PREEXEC_CODE" "preexec function" "preexec()"
 add_to_zshrc_if_not_exists 'source <(fzf --zsh)' "fzf" "fzf --zsh"
 add_to_zshrc_if_not_exists 'PATH=$PATH:$HOME/go/bin:$HOME/.pdtm/go/bin' "go bin" "go/bin"
+add_to_zshrc_if_not_exists 'alias intoclip="xclip -selection clipboard"' "intoclip alias" "intoclip"
 
 
 echo "Setup completed successfully!"

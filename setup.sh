@@ -3,11 +3,6 @@
 # Global variables
 ZSHRC="$HOME/.zshrc"
 MAIN_URL='https://raw.githubusercontent.com/JavaliMZ/setup_kali/main'
-PREEXEC_CODE='
-preexec() {
-    echo -e "$(date -u)\n"
-}
-'
 
 # Functions
 # Check if the function already exists
@@ -75,7 +70,6 @@ mkdir -p $HOME/.config/alacritty
 wget -O $HOME/.config/alacritty/alacritty.toml $MAIN_URL/alacritty.toml
 
 # Add necessary lines to .zshrc
-add_to_zshrc_if_not_exists "$PREEXEC_CODE" "preexec function" "preexec()"
 add_to_zshrc_if_not_exists 'source <(fzf --zsh)' "fzf" "fzf --zsh"
 add_to_zshrc_if_not_exists 'PATH=$PATH:$HOME/go/bin:$HOME/.pdtm/go/bin' "go bin" "go/bin"
 add_to_zshrc_if_not_exists 'alias intoclip="xclip -selection clipboard"' "intoclip alias" "intoclip"

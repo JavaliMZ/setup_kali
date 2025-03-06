@@ -1,3 +1,6 @@
+colors.draw_bold_text_with_bright_colors = true
+
+
 [colors.bright]
 black = "0x198388"
 blue = "0x277FFF"
@@ -48,3 +51,12 @@ y = 15
 
 [cursor]
 style = { shape = "Beam", blinking = "Always" }
+
+
+[selection]
+save_to_clipboard = true
+
+
+[general]
+live_config_reload = true
+import = ["/home/javali/.config/alacritty/dracula.toml"]

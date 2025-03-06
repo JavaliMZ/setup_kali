@@ -49,6 +49,10 @@ x = 15
 y = 15
 
 
+[scrolling]
+history = 100000
+multiplier = 30
+
 [cursor]
 style = { shape = "Beam", blinking = "Always" }
 

@@ -29,6 +29,8 @@ sudo apt update && sudo apt upgrade -y
 
 # Install necessary packages
 packages=(
+    git
+    libpcap-dev
     pipx
     i3
     alacritty
@@ -44,6 +46,7 @@ packages=(
     moreutils
     jq
     xclip
+    massdns
 )
 
 sudo apt install -y "${packages[@]}"

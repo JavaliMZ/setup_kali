@@ -8,9 +8,9 @@
 exec_always picom -f --config $HOME/.config/picom/picom.conf
 exec_always python3 $HOME/.config/i3/alternating_layouts.py
 exec --no-startup-id i3-dump-log > ~/.i3/logfile.log
-exec-always feh --bg-scale /usr/share/backgrounds/kali/kali-metal-dark-16x9.png
 exec-always setxkbmap pt
 
+bindsym $mod+0 exec feh --bg-scale /usr/share/backgrounds/kali/kali-metal-dark-16x9.png
 
 # i3 settings
 mouse_warping none

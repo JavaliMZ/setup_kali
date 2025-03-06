@@ -47,6 +47,12 @@ packages=(
     jq
     xclip
     massdns
+    nmap
+    netexec
+    nmap
+    html2text
+    htop
+    bat
 )
 
 sudo apt install -y "${packages[@]}"
@@ -76,6 +82,8 @@ wget -O $HOME/.config/alacritty/alacritty.toml $MAIN_URL/alacritty.toml
 add_to_zshrc_if_not_exists 'source <(fzf --zsh)' "fzf" "fzf --zsh"
 add_to_zshrc_if_not_exists 'PATH=$PATH:$HOME/go/bin:$HOME/.pdtm/go/bin' "go bin" "go/bin"
 add_to_zshrc_if_not_exists 'alias intoclip="xclip -selection clipboard"' "intoclip alias" "intoclip"
-
+add_to_zshrc_if_not_exists 'alias cat="batcat"' "batcat alias" "batcat"
+add_to_zshrc_if_not_exists 'alias -g -- -h="-h 2>&1 | batcat --language=help --style=plain"' "batcat alias" "batcat -g -- -h"
+add_to_zshrc_if_not_exists 'alias -g -- --help="--help 2>&1 | batcat --language=help --style=plain"' "batcat alias" "batcat -g -- --help"
 
 echo "Setup completed successfully!"

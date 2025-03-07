@@ -53,6 +53,9 @@ packages=(
     html2text
     htop
     bat
+    python3-impacket
+    wireshark
+    goshs
 )
 
 sudo apt install -y "${packages[@]}"

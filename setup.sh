@@ -1,24 +1,17 @@
 #!/bin/bash
 
+# Check if NOT running in a virtual machine
+if [[ $(systemd-detect-virt) == "none" ]]; then
+  echo "Not running in a virtual machine. Aborting."
+  exit 1 # Exit with an error code
+fi
+
+# Virtual machine detected. Continuing with Kali setup.
+echo "Virtual machine detected. Continuing with Kali setup."
+
 # Global variables
 ZSHRC="$HOME/.zshrc"
 MAIN_URL='https://raw.githubusercontent.com/JavaliMZ/setup_kali/main'
-
-# Functions
-# Check if the function already exists
-add_to_zshrc_if_not_exists() {
-    local content="$1"
-    local message="$2"
-    local check="$3"
-
-    if grep -q "$check" "$ZSHRC"; then
-        echo "$message already exists in .zshrc. No changes made."
-    else
-        echo "$content" >> "$ZSHRC"
-        echo "$message added to .zshrc."
-        source "$ZSHRC"
-    fi
-}
 
 ############################################
 ############# Main script ##################
@@ -81,12 +74,20 @@ chmod +x $HOME/.config/i3/alternating_layouts.py
 mkdir -p $HOME/.config/alacritty
 wget -O $HOME/.config/alacritty/alacritty.toml $MAIN_URL/alacritty.toml
 
-# Add necessary lines to .zshrc
-add_to_zshrc_if_not_exists 'source <(fzf --zsh)' "fzf" "fzf --zsh"
-add_to_zshrc_if_not_exists 'PATH=$PATH:$HOME/go/bin:$HOME/.pdtm/go/bin' "go bin" "go/bin"
-add_to_zshrc_if_not_exists 'alias intoclip="xclip -selection clipboard"' "intoclip alias" "intoclip"
-add_to_zshrc_if_not_exists 'alias cat="batcat"' "batcat alias" "batcat"
-add_to_zshrc_if_not_exists 'alias -g -- -h="-h 2>&1 | batcat --language=help --style=plain"' "batcat alias" "batcat -g -- -h"
-add_to_zshrc_if_not_exists 'alias -g -- --help="--help 2>&1 | batcat --language=help --style=plain"' "batcat alias" "batcat -g -- --help"
+wget -O $HOME/.zshrc_javali $MAIN_URL/.zshrc_javali
+
+# Add .zshrc_javali to .zshrc
+if ! grep -q "source $HOME/.zshrc_javali" $ZSHRC; then
+    echo "source $HOME/.zshrc_javali" >> $ZSHRC
+fi
+
+
+# Add custom nuclei templates from my personal GitHub 
+NUCLEI_TEMPLATES_URL='https://github.com/JavaliMZ/nuclei-templates/archive/refs/heads/main.zip'
+wget -O $HOME/Documents/nuclei-templates.zip $NUCLEI_TEMPLATES_URL
+unzip $HOME/Documents/nuclei-templates.zip -d $HOME/Documents/
+mv $HOME/Documents/nuclei-templates-main/Templates $HOME/Documents/nuclei-templates-javali
+rm $HOME/Documents/nuclei-templates.zip
+rm -rf $HOME/Documents/nuclei-templates-main
 
 echo "Setup completed successfully!"

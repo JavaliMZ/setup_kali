@@ -1,0 +1,13 @@
+source <(fzf --zsh)
+
+# Path
+PATH=$PATH:$HOME/go/bin
+PATH=$PATH:$HOME/.pdtm/go/bin
+
+# Aliases
+alias intoclip="xclip -selection clipboard"
+alias cat="batcat"
+alias -g -- -h="-h 2>&1 | batcat --language=help --style=plain"
+alias -g -- --help="--help 2>&1 | batcat --language=help --style=plain"
+alias getCleanURLorDOMAIN='sed sed -E "s#(^[^:/]+://)?([^/]+).*#\2#"'
+alias addProtocolToDomain='sed -E "s#^(https?://)?#http://&#; s#^(https?://)?#https://&#"'

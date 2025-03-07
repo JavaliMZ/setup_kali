@@ -63,4 +63,3 @@ save_to_clipboard = true
 
 [general]
 live_config_reload = true
-import = ["/home/javali/.config/alacritty/dracula.toml"]

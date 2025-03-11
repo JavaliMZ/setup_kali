@@ -1,5 +1,8 @@
 source <(fzf --zsh)
 
+export DEBIAN_FRONTEND=noninteractive
+export NEEDRESTART_MODE=a
+
 # Path
 PATH=$PATH:$HOME/go/bin
 PATH=$PATH:$HOME/.pdtm/go/bin

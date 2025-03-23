@@ -49,6 +49,7 @@ packages=(
     python3-impacket
     wireshark
     goshs
+    gromit-mpx
 )
 
 sudo apt install -y "${packages[@]}"
@@ -74,7 +75,11 @@ chmod +x $HOME/.config/i3/alternating_layouts.py
 mkdir -p $HOME/.config/alacritty
 wget -O $HOME/.config/alacritty/alacritty.toml $MAIN_URL/alacritty.toml
 
+wget -O $HOME/.config/gromit-mpx.cfg $MAIN_URL/gromit-mpx.cfg
+
+
 wget -O $HOME/.zshrc_javali $MAIN_URL/.zshrc_javali
+
 
 # Add .zshrc_javali to .zshrc
 if ! grep -q "source $HOME/.zshrc_javali" $ZSHRC; then

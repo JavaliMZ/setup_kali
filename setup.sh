@@ -17,9 +17,6 @@ MAIN_URL='https://raw.githubusercontent.com/JavaliMZ/setup_kali/main'
 ############# Main script ##################
 ############################################
 
-# Update and upgrade
-sudo apt update && sudo apt upgrade -y
-
 # Install necessary packages
 packages=(
     git
@@ -79,6 +76,8 @@ wget -O $HOME/.config/gromit-mpx.cfg $MAIN_URL/gromit-mpx.cfg
 
 
 wget -O $HOME/.zshrc_javali $MAIN_URL/.zshrc_javali
+
+wget -O $HOME/.tmux.conf $MAIN_URL/.tmux.conf
 
 
 # Add .zshrc_javali to .zshrc

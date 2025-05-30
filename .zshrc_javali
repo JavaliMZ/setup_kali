@@ -7,6 +7,10 @@ export NEEDRESTART_MODE=a
 PATH=$PATH:$HOME/go/bin
 PATH=$PATH:$HOME/.pdtm/go/bin
 
+# Add limit to zsh-syntax-highlighting plugin to prevent slow performance
+export ZSH_HIGHLIGHT_MAXLENGTH=60
+
+
 # Aliases
 alias intoclip="xclip -selection clipboard"
 alias cat="batcat"

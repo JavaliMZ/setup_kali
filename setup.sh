@@ -51,8 +51,6 @@ packages=(
 
 sudo apt install -y "${packages[@]}"
 
-sudo apt purge -y zsh-syntax-highlighting
-
 go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
 go install -v github.com/heartbeatsjp/check-tls-cert@latest
 go install -v github.com/s0md3v/smap/cmd/smap@latest

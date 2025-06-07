@@ -1,4 +1,5 @@
 source <(fzf --zsh)
+eval "$(starship init zsh)"
 
 export DEBIAN_FRONTEND=noninteractive
 export NEEDRESTART_MODE=a

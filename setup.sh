@@ -51,6 +51,10 @@ packages=(
 
 sudo apt install -y "${packages[@]}"
 
+curl -sS https://starship.rs/install.sh | sh
+
+starship preset catppuccin-powerline -o ~/.config/starship.toml
+
 go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
 go install -v github.com/heartbeatsjp/check-tls-cert@latest
 go install -v github.com/s0md3v/smap/cmd/smap@latest

@@ -19,3 +19,5 @@ alias -g -- -h="-h 2>&1 | batcat --language=help --style=plain"
 alias -g -- --help="--help 2>&1 | batcat --language=help --style=plain"
 alias getCleanURLorDOMAIN='sed sed -E "s#(^[^:/]+://)?([^/]+).*#\2#"'
 alias addProtocolToDomain='sed -E "s#^(https?://)?#http://&#; s#^(https?://)?#https://&#"'
+
+feh --bg-fill ~/Pictures/wallpaper.jpg

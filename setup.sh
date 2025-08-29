@@ -96,4 +96,8 @@ mv $HOME/Documents/nuclei-templates-main/Templates $HOME/Documents/nuclei-templa
 rm $HOME/Documents/nuclei-templates.zip
 rm -rf $HOME/Documents/nuclei-templates-main
 
+# Get Wallpaper
+mkdir -p $HOME/Pictures
+wget -O $HOME/Pictures/wallpaper.jpg $MAIN_URL/wallpaper.jpg
+
 echo "Setup completed successfully!"

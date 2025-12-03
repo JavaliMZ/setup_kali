@@ -47,6 +47,7 @@ packages=(
     wireshark
     goshs
     gromit-mpx
+    isc-dhcp-client
 )
 
 sudo apt install -y "${packages[@]}"

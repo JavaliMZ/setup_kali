@@ -21,3 +21,56 @@ alias getCleanURLorDOMAIN='sed sed -E "s#(^[^:/]+://)?([^/]+).*#\2#"'
 alias addProtocolToDomain='sed -E "s#^(https?://)?#http://&#; s#^(https?://)?#https://&#"'
 
 feh --bg-fill ~/Pictures/wallpaper.jpg
+
+clean_it_for_me() {echo $1 | tr '/' ' ' | awk '{print "\033[31m"$2"\033[0m"}' | sort -u}
+dns() {echo "$1" | dnsx -re -recon; echo "_dmarc.$1" | dnsx -re -recon -silent}
+
+goodork() {
+  if [ $# -ne 1 ]; then
+    echo "Usage: gdork_grouped <domain-or-phrase>"
+    return 1
+  fi
+
+  local arg="$1"
+  local base base_quoted arg_plain
+
+  # quick domain check
+  if [[ "$arg" =~ ^[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$ ]]; then
+    base="site:${arg}"
+    base_quoted="\"${arg}\""
+    arg_plain="$arg"
+  else
+    arg_escaped="${arg//\"/\\\"}"
+    base="\"${arg_escaped}\""
+    base_quoted="\"${arg_escaped}\""
+    arg_plain="${arg//\"/}"
+  fi
+
+  # --- Thematic Dork Groups ---
+  local docs="(ext:doc OR ext:docx OR ext:odt OR ext:rtf OR ext:sxw OR ext:psw OR ext:ppt OR ext:pptx OR ext:pps OR ext:csv)"
+  local indexof="(intitle:index.of)"
+  local configs="(ext:xml OR ext:conf OR ext:cnf OR ext:reg OR ext:inf OR ext:rdp OR ext:cfg OR ext:txt OR ext:ora OR ext:ini OR ext:env)"
+  local db_backups="(ext:sql OR ext:dbf OR ext:mdb OR ext:log OR ext:bkf OR ext:bkp OR ext:bak OR ext:old OR ext:backup)"
+  local auth_login="(inurl:login OR inurl:signin OR inurl:auth OR inurl:signup OR inurl:register OR intitle:Login OR intitle:\"sign in\" OR intitle:Signup)"
+  local errors_sql_php="(intext:\"sql syntax near\" OR intext:\"syntax error has occurred\" OR intext:\"incorrect syntax near\" OR intext:\"unexpected end of SQL command\" OR intext:\"Warning: mysql_connect()\" OR intext:\"Warning: mysql_query()\" OR intext:\"Warning: pg_connect()\" OR \"PHP Parse error\" OR \"PHP Warning\" OR \"PHP Error\" OR (ext:php AND intitle:phpinfo AND \"published by the PHP Group\"))"
+  
+  local paste_hosts="(site:pastebin.com OR site:paste2.org OR site:pastehtml.com OR site:slexy.org OR site:snipplr.com OR site:snipt.net OR site:textsnip.com OR site:bitpaste.app OR site:justpaste.it OR site:heypasteit.com OR site:hastebin.com OR site:dpaste.org OR site:dpaste.com OR site:paste.debian.net OR site:paste.org OR site:paste.org.ru)"
+  local code_hosts="(site:codepad.org OR site:jsitor.com OR site:codepen.io OR site:jsfiddle.net OR site:dotnetfiddle.net OR site:phpfiddle.org OR site:ide.geeksforgeeks.org OR site:repl.it OR site:ideone.com OR site:codebeautify.org OR site:codeshare.io OR site:github.com OR site:gitlab.com OR site:stackoverflow.com)"
+  
+  local misc="(site:trello.com OR inurl:signup OR inurl:register)"
+  local wildcards="(site:*. OR site:*.*.)"
+  local archive="https://web.archive.org/web/*/${arg_plain}/*"
+
+  # --- Print grouped copy/paste queries ---
+  echo "${base} ${docs}\n"
+  echo "${base} ${indexof}\n"
+  echo "${base} ${configs}\n"
+  echo "${base} ${db_backups}\n"
+  echo "${base} ${auth_login}\n"
+  echo "${base} ${errors_sql_php}\n"
+  echo "${base_quoted} ${paste_hosts}\n"
+  echo "${base_quoted} ${code_hosts}\n"
+  echo "${base_quoted} ${misc}\n"
+  echo "${base} ${wildcards}\n"
+  echo "${archive}"
+}

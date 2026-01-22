@@ -21,6 +21,7 @@ alias getCleanURLorDOMAIN='sed sed -E "s#(^[^:/]+://)?([^/]+).*#\2#"'
 alias addProtocolToDomain='sed -E "s#^(https?://)?#http://&#; s#^(https?://)?#https://&#"'
 alias ll="ls -lArth"
 alias ts="ts '[%Y-%m-%d %H:%M]'"
+alias getIP='echo -n $(date +"%Y-%m-%d %H:%M "); echo -n "\tSwitch to IP "; curl ipinfo.io/ip -s'
 
 feh --bg-fill ~/Pictures/wallpaper.jpg
 

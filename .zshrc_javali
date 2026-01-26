@@ -22,8 +22,9 @@ alias addProtocolToDomain='sed -E "s#^(https?://)?#http://&#; s#^(https?://)?#ht
 alias ll="ls -lArth"
 alias ts="ts '[%Y-%m-%d %H:%M]'"
 alias getIP='echo -n $(date +"%Y-%m-%d %H:%M "); echo -n "\tSwitch to IP "; curl ipinfo.io/ip -s'
-
+alias curl='curl -H "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"'
 feh --bg-fill ~/Pictures/wallpaper.jpg
+
 
 clean_it_for_me() {echo $1 | tr '/' ' ' | awk '{print "\033[31m"$2"\033[0m"}' | sort -u}
 dns() {echo "$1" | dnsx -re -recon; echo "_dmarc.$1" | dnsx -re -recon -silent}

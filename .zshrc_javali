@@ -11,6 +11,13 @@ PATH=$PATH:$HOME/.pdtm/go/bin
 # Add limit to zsh-syntax-highlighting plugin to prevent slow performance
 export ZSH_HIGHLIGHT_MAXLENGTH=60
 
+# User-Agent profiles
+UA_GOOGLEBOT='Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+UA_FIREFOX='Mozilla/5.0 (X11; Linux x86_64; rv:122.0) Gecko/20100101 Firefox/122.0'
+UA_MOBILE='Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 Chrome/120.0 Mobile'
+
+# Active UA
+USER_AGENT_SPOOF=$UA_GOOGLEBOT
 
 # Aliases
 alias intoclip="xclip -selection clipboard"
@@ -22,7 +29,10 @@ alias addProtocolToDomain='sed -E "s#^(https?://)?#http://&#; s#^(https?://)?#ht
 alias ll="ls -lArth"
 alias ts="ts '[%Y-%m-%d %H:%M]'"
 alias getIP='echo -n $(date +"%Y-%m-%d %H:%M "); echo -n "\tSwitch to IP "; curl ipinfo.io/ip -s'
-alias curl='curl -H "User-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"'
+alias curl="curl -H \"User-Agent: ${USER_AGENT_SPOOF}\""
+alias ffuf="ffuf -H \"User-Agent: ${USER_AGENT_SPOOF}\""
+alias wget="wget --header=\"User-Agent: ${USER_AGENT_SPOOF}\""
+alias httpx="httpx -H \"User-Agent: ${USER_AGENT_SPOOF}\""
 feh --bg-fill ~/Pictures/wallpaper.jpg
 
 

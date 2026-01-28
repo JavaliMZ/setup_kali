@@ -48,6 +48,7 @@ packages=(
     goshs
     gromit-mpx
     isc-dhcp-client
+    gobuster
 )
 
 sudo apt install -y "${packages[@]}"

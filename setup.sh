@@ -63,9 +63,7 @@ go install -v github.com/s0md3v/smap/cmd/smap@latest
 
 $HOME/go/bin/pdtm -ia
 
-pipx install git+https://github.com/JavaliMZ/getNmapAndCensysToTable.git
-pipx install git+https://github.com/JavaliMZ/getTLSInformationToTable.git
-pipx install git+https://github.com/JavaliMZ/getIPsFromDomains.git
+pipx install git+https://github.com/JavaliMZ/javali_tools.git
 
 # Download and setup config files
 mkdir -p $HOME/.config/i3

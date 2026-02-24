@@ -11,8 +11,6 @@ exec --no-startup-id i3-dump-log > ~/.i3/logfile.log
 exec-always setxkbmap pt
 exec-always gromit-mpx
 
-bindsym $mod+0 exec feh --bg-scale /usr/share/backgrounds/kali/kali-metal-dark-16x9.png
-
 # i3 settings
 mouse_warping none
 set $mod Mod4

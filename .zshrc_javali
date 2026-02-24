@@ -33,8 +33,6 @@ alias curl="curl -H \"User-Agent: ${USER_AGENT_SPOOF}\""
 alias ffuf="ffuf -H \"User-Agent: ${USER_AGENT_SPOOF}\""
 alias wget="wget --header=\"User-Agent: ${USER_AGENT_SPOOF}\""
 alias httpx="httpx -H \"User-Agent: ${USER_AGENT_SPOOF}\""
-feh --bg-fill ~/Pictures/wallpaper.jpg
-
 
 clean_it_for_me() {echo $1 | tr '/' ' ' | awk '{print "\033[31m"$2"\033[0m"}' | sort -u}
 dns() {echo "$1" | dnsx -re -recon; echo "_dmarc.$1" | dnsx -re -recon -silent}

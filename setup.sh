@@ -32,7 +32,7 @@ packages=(
     seclists
     golang
     fzf
-    docker.io
+    podman
     moreutils
     jq
     xclip
@@ -95,5 +95,10 @@ unzip $HOME/Documents/nuclei-templates.zip -d $HOME/Documents/
 mv $HOME/Documents/nuclei-templates-main/Templates $HOME/Documents/nuclei-templates-javali
 rm $HOME/Documents/nuclei-templates.zip
 rm -rf $HOME/Documents/nuclei-templates-main
+
+# Add repository docker to podman
+mkdir -p "$HOME/.config/containers"
+echo 'unqualified-search-registries = ["docker.io"]' | sudo tee -a /etc/containers/registries.conf
+
 
 echo "Setup completed successfully!"

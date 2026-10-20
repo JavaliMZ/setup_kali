@@ -4,6 +4,14 @@ eval "$(starship init zsh)"
 export DEBIAN_FRONTEND=noninteractive
 export NEEDRESTART_MODE=a
 
+
+# History configuration
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+HISTSIZE=50000
+SAVEHIST=50000
+HISTFILE="$HOME/.zsh_history"
+
 feh --bg-fill /usr/share/backgrounds/kali-16x9/kali-net.jpg
 
 # Path

@@ -51,6 +51,64 @@ alias jwt_tool='docker run -it --network "host" --rm -v "${PWD}:/tmp" -v "${HOME
 clean_it_for_me() {echo $1 | tr '/' ' ' | awk '{print "\033[31m"$2"\033[0m"}' | sort -u}
 dns() {echo "$1" | dnsx -re -recon; echo "_dmarc.$1" | dnsx -re -recon -silent}
 
+
+# ---------- Session recorder: clean per-command log ----------
+if [[ -o interactive && -t 1 ]]; then
+  if [[ -z $LOGGED_SESSION ]]; then
+    export LOGGED_SESSION=1
+    mkdir -p ~/.shell_logs
+    _rec_log=~/.shell_logs/$(date +%F_%H%M%S)_$$.log
+    _rec_fifo=$_rec_log.fifo
+    _rec_perl='
+$SIG{HUP} = $SIG{INT} = "IGNORE";
+unlink $ARGV[1];
+$| = 1;
+open(my $out, ">>", $ARGV[0]) or die "cannot open $ARGV[0]: $!";
+select((select($out), $| = 1)[0]);
+my $buf = "";
+sub emit {
+  my ($t0, $cmd, $chunk, $t1, $code) = @_;
+  my @t = localtime(int $t0);
+  my $when = sprintf("%04d-%02d-%02d %02d:%02d:%02d", $t[5]+1900, $t[4]+1, @t[3,2,1,0]);
+  $chunk =~ s/\e\[\?(?:1049|1047|47)h.*?(?:\e\[\?(?:1049|1047|47)l|\z)/[interactive screen omitted]\n/gs;
+  $chunk =~ s/\e\[[0-?]*[ -\/]*[@-~]//g;
+  $chunk =~ s/\e\][^\a]*\a//g;
+  $chunk =~ s/\r\n/\n/g;
+  $chunk = join("\n", map { my @p = split(/\r/, $_, -1); @p ? $p[-1] : "" } split(/\n/, $chunk, -1));
+  $chunk =~ s/^\n+|\n+$//g;
+  printf $out "[%s] \$ %s\n%s\n[exit %s | %.2fs]\n\n", $when, $cmd, $chunk, $code, $t1 - $t0;
+}
+while (sysread(STDIN, my $d, 65536)) {
+  $buf .= $d;
+  while ($buf =~ /\e\]7770;START;([^;\a]*);([^\a]*)\a(.*?)\e\]7770;END;([^;\a]*);([^\a]*)\a/s) {
+    my @m = ($1, $2, $3, $4, $5);
+    $buf = substr($buf, $+[0]);
+    emit(@m);
+  }
+}
+if ($buf =~ /\e\]7770;START;([^;\a]*);([^\a]*)\a(.*)/s) { emit($1, $2, $3, $1, "session ended"); }
+'
+    if mkfifo $_rec_fifo 2>/dev/null; then
+      perl -e "$_rec_perl" $_rec_log $_rec_fifo < $_rec_fifo &!
+      if [[ $OSTYPE == darwin* ]]; then
+        exec script -q $_rec_fifo zsh -i
+      else
+        exec script -q -f -c "zsh -i" $_rec_fifo
+      fi
+    fi
+    unset LOGGED_SESSION   # only reached if the recorder failed to start
+  fi
+
+  if [[ -n $LOGGED_SESSION ]]; then
+    zmodload zsh/datetime
+    _rec_preexec() { printf '\e]7770;START;%s;%s\a' "$EPOCHREALTIME" "$1" }
+    _rec_precmd()  { local c=$?; printf '\e]7770;END;%s;%s\a' "$EPOCHREALTIME" "$c" }
+    preexec_functions+=(_rec_preexec)
+    precmd_functions=(_rec_precmd $precmd_functions)
+  fi
+fi
+
+
 goodork() {
   if [ $# -ne 1 ]; then
     echo "Usage: gdork_grouped <domain-or-phrase>"
